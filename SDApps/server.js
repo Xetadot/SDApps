@@ -35,4 +35,5 @@ app.post('/save', (req, res) => {
 });
 
 const PORT = 3000;
+console.log("Please CTRL + Click the link to open the link")
 app.listen(PORT, () => console.log(`SDApp running at http://localhost:${PORT}`));
