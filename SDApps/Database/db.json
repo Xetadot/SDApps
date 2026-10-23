@@ -1,0 +1,42 @@
+{
+    "admin":[
+        {
+            "UID": "U0123",
+            "username": "John",
+            "name": "John Faragus",
+            "password": "JF111"
+        },
+        {
+            "UID": "U0111",
+            "username": "Terry12",
+            "name": "Tery Sanderson",
+            "password": "TS111"
+        },
+        {
+            "UID": "U0129",
+            "username": "A",
+            "name": "A",
+            "password": "A"
+        }
+    ],
+    "residents": [
+        {
+            "UID": "U0122",
+            "username": "C",
+            "name": "C",
+            "password": "C"
+        },
+        {
+            "UID": "U0124",
+            "username": "Jen556",
+            "name": "Johans Ben",
+            "password": "JB111"
+        },
+        {
+            "UID": "U0222",
+            "username": "B",
+            "name": "B",
+            "password": "B"
+        }
+    ]
+}

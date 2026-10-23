@@ -1,0 +1,39 @@
+{
+  "Likes": [
+    {
+      "ICID": "IC0001",
+      "IID": "I0123",
+      "Posted": "22102026",
+      "Postedby": "U0111",
+      "Comments": "Where to get it?"
+    },
+    {
+      "ICID": "IC0002",
+      "IID": "I0123",
+      "Posted": "22102026",
+      "Postedby": "U0123",
+      "Comments": "It looks quite beautful?"
+    },
+    {
+      "ICID": "IC0003",
+      "IID": "I0123",
+      "Posted": "22102026",
+      "Postedby": "U0129",
+      "Comments": "Mana beli?"
+    },
+    {
+      "ICID": "IC0004",
+      "IID": "I0123",
+      "Posted": "22102026",
+      "Postedby": "U0129",
+      "Comments": "wd"
+    },
+    {
+      "ICID": "IC0005",
+      "IID": "I0129",
+      "Posted": "23102026",
+      "Postedby": "U0129",
+      "Comments": "Hey uhh is the DJI drone still available?"
+    }
+  ]
+}

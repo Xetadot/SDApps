@@ -1,0 +1,75 @@
+{
+  "conversation": [
+    {
+      "room0001": {
+        "RID": [
+          "U0122",
+          "U0129"
+        ],
+        "MessageA00000001": {
+          "UID": "U0122",
+          "time": 221020261312,
+          "context": "Hey mate, how u doing"
+        },
+        "MessageA00000002": {
+          "UID": "U0129",
+          "time": 221020261313,
+          "context": "Yea doing great so far"
+        },
+        "MessageA00000003": {
+          "UID": "U0122",
+          "time": 221020261312,
+          "context": "The nearby Pak mat Nasi lemak store is not bad ah?"
+        },
+        "MessageA00000004": {
+          "UID": "U0122",
+          "time": 221020261312,
+          "context": "You must go try it out man?"
+        },
+        "MessageA00000005": {
+          "UID": "U0129",
+          "time": 221020261312,
+          "context": "Yea sure... will go try it out soon, but having more work than ever now."
+        },
+        "MessageA00000006": {
+          "UID": "U0129",
+          "time": 231020260012,
+          "context": "dor"
+        },
+        "MessageA00000007": {
+          "UID": "U0129",
+          "time": 231020261134,
+          "context": "Is the DJI drone still available?"
+        }
+      },
+      "room0002": {
+        "RID": [
+          "U0129",
+          "U0111"
+        ]
+      },
+      "room0003": {
+        "RID": [
+          "U0129",
+          "U0124"
+        ]
+      },
+      "room0004": {
+        "RID": [
+          "U0129",
+          "U0123"
+        ],
+        "MessageA00000001": {
+          "UID": "U0129",
+          "time": 231020260012,
+          "context": "wd"
+        },
+        "MessageA00000002": {
+          "UID": "U0129",
+          "time": 231020260013,
+          "context": "bro waht"
+        }
+      }
+    }
+  ]
+}

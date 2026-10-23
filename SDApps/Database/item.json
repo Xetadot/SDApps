@@ -1,0 +1,58 @@
+{
+  "Toys and collectibles": [
+    {
+      "IID": "I0129",
+      "UID": "U0122",
+      "Name": "DJI Drone",
+      "Image": "https://images.pexels.com/photos/28641255/pexels-photo-28641255.jpeg",
+      "Price": "120",
+      "Address": "Jalan 9/3",
+      "State": "New"
+    },
+    {
+      "IID": "I0123",
+      "UID": "U0123",
+      "Name": "1923 Manhattan Police Typewriter",
+      "Image": "Images/0123.jpg",
+      "Price": "1.23",
+      "Address": "Jalan 9/3",
+      "State": "Used",
+      "Posted": "22102026"
+    },
+    {
+      "IID": "I0128",
+      "UID": "U0123",
+      "Name": "Preloved Jenga set",
+      "Image": "Images/0128.jpg",
+      "Price": "12.9",
+      "Address": "Jalan 9/3",
+      "State": "Used",
+      "Posted": "22102026"
+    }
+  ],
+  "Cars": [
+    {
+      "IID": "I0124",
+      "UID": "U0123",
+      "Name": "Tesla Type X Car Evo",
+      "Image": "Images/0124.jpg",
+      "Price": "150000",
+      "Address": "Jalan 9/3",
+      "State": "Like New",
+      "Posted": "22102026"
+    }
+  ],
+  "Electronics": [
+    {
+      "IID": "I0125",
+      "UID": "U0123",
+      "Name": "Samsung S10+",
+      "Image": "Images/0125.jpg",
+      "Price": "300",
+      "Address": "Jalan 9/3",
+      "State": "Like New",
+      "Posted": "22102026"
+    }
+  ],
+  "Household": []
+}

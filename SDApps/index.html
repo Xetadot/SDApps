@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDApp · Resident Portal</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-page" id="loginPage">
+  <div class="login-container">
+    <div class="logo-area">
+      <div class="logo-icon">S</div>
+      <div class="logo-text">SD<span>App</span></div>
+    </div>
+    <h1 id="authTitle">Welcome back</h1>
+    <p class="subtitle" id="authSubtitle">Sign in to your SDApp account</p>
+    <div class="error-msg" id="authError"></div>
+    <div class="form-group"><label>Username</label><input type="text" id="usernameInput" placeholder="Enter username"></div>
+    <div class="form-group"><label>Password</label><input type="password" id="passwordInput" placeholder="Enter password"></div>
+    <button class="login-btn" id="authBtn">Sign In</button>
+    <div class="toggle-auth"><span id="toggleAuth">Don't have an account? Sign up</span></div>
+  </div>
+</div>
+
+<div id="appContainer" style="display:none;">
+  
+  <!-- FIXED TOP BAR (Full width, top level) -->
+  <header class="top-bar">
+    <div class="greeting">
+      <h1 id="greetingText">Good morning 👋</h1>
+      <p id="greetingSub">SDApp</p>
+    </div>
+    <div class="badge-status"><i class="fas fa-circle"></i> System Active</div>
+  </header>
+
+  <!-- SIDEBAR & MAIN CONTENT WRAPPER (Below Top Bar) -->
+  <div class="app-body">
+    
+    <aside class="sidebar">
+      <div class="logo-area">
+        <div class="logo-icon">S</div>
+        <div class="logo-text">SD<span>App</span></div>
+      </div>
+      <div class="nav-links custom-scroll">
+        <div class="nav-item active" data-view="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></div>
+        <div class="nav-item" data-view="visitor"><i class="fas fa-user-check"></i> <span>Visitor check</span></div>
+        <div class="nav-item" data-view="utilities"><i class="fas fa-bolt"></i> <span>Utilities</span></div>
+        <div class="nav-item" data-view="market"><i class="fas fa-store"></i> <span>Share & trade</span></div>
+        <div class="nav-item" data-view="liked"><i class="fas fa-heart"></i> <span>Liked items</span></div>
+        <div class="nav-item" data-view="chat-community"><i class="fas fa-users"></i> <span>Community chat</span></div>
+        <div class="nav-item" data-view="chat-personal"><i class="fas fa-user-friends"></i> <span>Personal chat</span></div>
+        <div class="nav-item" data-view="announcements"><i class="fas fa-bullhorn"></i> <span>Announcements</span><span class="badge-dot" id="annBadge" style="display:none;">0</span></div>
+        <div class="nav-item admin-only" data-view="admin" style="display:none;"><i class="fas fa-shield-alt"></i> <span>Admin panel</span></div>
+      </div>
+      <div class="user-tag">
+        <div class="user-avatar" id="userAvatar">R</div>
+        <div class="user-info"><h4 id="userName">—</h4><p id="userRole">—</p></div>
+      </div>
+      <button class="darkmode-btn" id="darkmodeBtn" title="Toggle dark mode">
+        <i class="fas fa-moon"></i> <span>Dark mode</span>
+      </button>
+      <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
+    </aside>
+
+    <main class="main">
+      <div class="main-content custom-scroll">
+        
+        <div id="view-dashboard" class="view active">
+          <div class="grid-2" style="margin-bottom:1.5rem;">
+            <div class="card">
+              <div class="card-header"><h3><i class="fas fa-camera"></i> Image checking</h3><span class="pill" id="visitorPill">LIVE · GATE 2</span></div>
+              <div id="visitorCardBody"></div>
+            </div>
+            <div class="card">
+              <div class="card-header"><h3><i class="fas fa-chart-line"></i> Utility checking</h3><span class="pill">October 2024</span></div>
+              <div class="utility-stats">
+                <div class="stat"><div class="label">Electricity</div><div class="value">184<span class="unit">kWh</span></div><div class="progress-bar-bg"><div class="progress-fill" style="width:58%"></div></div></div>
+                <div class="stat"><div class="label">Water</div><div class="value">6.2<span class="unit">m³</span></div><div class="progress-bar-bg"><div class="progress-fill" style="width:41%"></div></div></div>
+              </div>
+              <div class="carbon-note"><i class="fas fa-leaf"></i> Carbon footprint: 112 kg CO₂ · saved 12% vs last month</div>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:0;">
+            <div class="card">
+              <div class="card-header"><h3><i class="fas fa-people-arrows"></i> Resource sharing</h3><span class="pill">Community</span></div>
+              <div class="market-grid" id="dashMarketPreview"><div class="loading"><i class="fas fa-spinner fa-spin"></i>Loading…</div></div>
+              <div class="chat-preview" id="openChatFromDash">
+                <div class="chat-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="chat-text"><h4>Community chat</h4><p id="dashChatPreviewText">Loading…</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-visitor" class="view">
+          <div class="card">
+            <div class="card-header"><h3><i class="fas fa-user-check"></i> Allowed guests</h3><span class="pill" id="guestCount">0 saved</span></div>
+            <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem;">Guests you've approved are stored in <strong>carAllow.json</strong>.</p>
+            <div class="guest-list custom-scroll" id="guestList" style="max-height:60vh;overflow-y:auto;"></div>
+          </div>
+        </div>
+
+        <div id="view-utilities" class="view">
+          <div class="card">
+            <div class="card-header"><h3><i class="fas fa-chart-line"></i> Utility history</h3><span class="pill">2024</span></div>
+            <div class="custom-scroll" style="max-height:60vh;overflow-y:auto;">
+              <table class="utility-table">
+                <thead><tr><th>Month</th><th>Electricity (kWh)</th><th>Water (m³)</th><th>Carbon (kg CO₂)</th></tr></thead>
+                <tbody id="utilityTableBody"></tbody>
+              </table>
+            </div>
+            <div class="ai-conclusion">
+              <i class="fas fa-robot"></i>
+              <div>
+                <h4>AI conclusion · October 2024</h4>
+                <p id="aiConclusion">Your electricity usage dropped 15% compared to September, primarily due to cooler weather and reduced air-conditioning. Water consumption remains stable. Your carbon footprint decreased by 12% — excellent progress toward the community's sustainability goal. Keep it up!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-market" class="view">
+          <div class="card" style="margin-bottom:1.5rem;">
+            <div class="card-header"><h3><i class="fas fa-store"></i> Share & trade</h3><span class="pill" id="listingCount">—</span></div>
+            <div class="market-toolbar">
+              <div class="search-box"><i class="fas fa-search"></i><input type="text" id="marketSearch" placeholder="Search listings..."></div>
+              <button class="upload-btn" id="openUploadBtn"><i class="fas fa-plus"></i> Sell an item</button>
+            </div>
+          </div>
+          <div class="grid-4" id="marketplaceGrid"></div>
+        </div>
+
+        <div id="view-liked" class="view">
+          <div class="card" style="margin-bottom:1.5rem;">
+            <div class="card-header"><h3><i class="fas fa-heart"></i> Items you liked</h3><span class="pill" id="likedCount">—</span></div>
+          </div>
+          <div class="grid-5" id="likedGrid"></div>
+        </div>
+
+        <div id="view-chat-community" class="view">
+          <div class="card chat-panel">
+            <div class="card-header">
+              <h3><i class="fas fa-users"></i> Community chat</h3>
+              <span class="pill" id="communityOnlinePill">Blk 22 · online</span>
+            </div>
+            <div class="wa-body wa-community">
+              <div class="wa-messages" id="chatMessages"></div>
+              <div class="wa-input">
+                <input type="text" id="chatInput" placeholder="Type a message...">
+                <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-chat-personal" class="view">
+          <div class="card chat-panel">
+            <div class="card-header">
+              <h3><i class="fas fa-user-friends"></i> Personal chat</h3>
+              <span class="pill" id="personalPill">0 people</span>
+            </div>
+            <div class="wa-body wa-personal">
+              <div class="wa-contacts">
+                <div class="wa-contacts-search">
+                  <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="peopleSearch" placeholder="Find a person...">
+                  </div>
+                </div>
+                <div class="wa-contacts-list custom-scroll" id="peopleList"></div>
+              </div>
+              <div class="wa-thread">
+                <div class="wa-thread-header" id="waThreadHeader" style="display:none;">
+                  <div class="wa-th-avatar" id="ptAvatar">?</div>
+                  <div class="wa-th-info">
+                    <h5 id="ptName">Select a person</h5>
+                    <p id="ptRole">Resident</p>
+                  </div>
+                </div>
+                <div class="wa-thread-empty" id="waThreadEmpty">
+                  <i class="fas fa-comments"></i>
+                  <div>Select a person to start chatting</div>
+                </div>
+                <div class="wa-messages" id="personalMessages" style="display:none;"></div>
+                <div class="wa-input" id="personalInputWrap" style="display:none;">
+                  <input type="text" id="personalInput" placeholder="Type a message...">
+                  <button id="sendPersonalBtn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-announcements" class="view">
+          <div class="card">
+            <div class="card-header"><h3><i class="fas fa-bullhorn"></i> Announcements</h3><span class="pill" id="annCount">—</span></div>
+            <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem;">Official notices from your community admin.</p>
+            <div class="announcement-list custom-scroll" id="announcementList" style="max-height:70vh;overflow-y:auto;"></div>
+          </div>
+        </div>
+
+        <div id="view-admin" class="view admin-only">
+          <div class="grid-2" style="margin-bottom:1.5rem;">
+            <div class="card">
+              <div class="card-header"><h3><i class="fas fa-bullhorn"></i> Make an announcement</h3><span class="pill">Admin only</span></div>
+              <div class="announce-form">
+                <textarea id="announceInput" placeholder="Type your announcement message here..."></textarea>
+                <div class="form-footer">
+                  <span class="hint"><i class="fas fa-info-circle"></i> Saves to announcement.json</span>
+                  <button class="upload-btn" id="postAnnouncementBtn"><i class="fas fa-paper-plane"></i> Post</button>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><h3><i class="fas fa-shield-alt"></i> Approval requests</h3><span class="pill" id="adminPendingCount">0 pending</span></div>
+              <div class="approval-list custom-scroll" id="adminApprovalList" style="max-height:40vh;overflow-y:auto;"></div>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:0;">
+            <div class="card" style="grid-column: 1 / -1;">
+              <div class="card-header"><h3><i class="fas fa-users-cog"></i> User management</h3><span class="pill" id="userCountPill">—</span></div>
+              <div class="admin-users-toolbar">
+                <h4>All users</h4>
+                <button class="upload-btn" onclick="openUserForm()"><i class="fas fa-user-plus"></i> Add user</button>
+              </div>
+              <div class="user-table-wrap custom-scroll" style="max-height:50vh;overflow:auto;">
+                <table class="user-table">
+                  <thead><tr><th>UID</th><th>Username</th><th>Name</th><th>Role</th><th>Actions</th></tr></thead>
+                  <tbody id="adminUserTableBody"></tbody>
+                </table>
+              </div>
+              <div id="adminUserFormMount"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-note"><i class="fas fa-sync-alt"></i> SDApp · realtime sync</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal-frame" style="max-width:480px;">
+    <div class="modal-header">
+      <h2><i class="fas fa-plus-circle"></i> Sell an item</h2>
+      <button class="close-btn" onclick="closeUploadModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="upload-form">
+      <div class="form-group"><label>Item name</label><input type="text" id="itemName" placeholder="e.g. IKEA shelf"></div>
+      <div class="form-group"><label>Category</label><select id="itemCategory"></select></div>
+      <div class="form-group"><label>Price (RM)</label><input type="number" id="itemPrice" placeholder="e.g. 45" min="0.01" step="0.01"></div>
+      <div class="form-group"><label>Address</label><input type="text" id="itemAddress" placeholder="e.g. Jalan 9/3"></div>
+      <div class="form-group"><label>State</label><select id="itemState"><option>New</option><option>Like New</option><option>Used</option></select></div>
+      <div class="form-group"><label>Image URL</label><input type="text" id="itemImage" placeholder="Images/I0129.png"></div>
+      <div class="upload-actions">
+        <button class="btn btn-outline" onclick="closeUploadModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitListing()"><i class="fas fa-check"></i> Post listing</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="itemModal">
+  <div class="modal-frame" style="max-width:620px;">
+    <div class="modal-header">
+      <h2><i class="fas fa-box-open"></i> Item details</h2>
+      <button class="close-btn" onclick="closeItemModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="itemModalBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
